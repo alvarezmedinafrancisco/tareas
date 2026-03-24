@@ -7,3 +7,5 @@ cat pyproject.toml
 uv add flet
 crear DATABASE.PY
 schemas.py
+uv add email-validator
+uv add comillasimple pantic
