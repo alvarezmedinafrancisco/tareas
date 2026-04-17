@@ -8,6 +8,15 @@ dependencies = [
     "bcrypt>=5.0.0",
     "flet>=0.82.2",
     "mysql-connector-python>=9.6.0",
-    "pydantic>=2.12.5",
+    "pydantic[email]>=2.12.5",
     "python-dotenv>=1.2.2",
 ]
+
+[project.scripts]
+app = "main:main"
+
+[tool.uv]
+package = true 
+
+[tool.setuptools.package-dir]
+"" = "src"

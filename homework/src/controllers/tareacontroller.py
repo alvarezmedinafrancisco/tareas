@@ -1,8 +1,8 @@
-from models.tareas import tareas
+from models.tareasModel import TareasModel
 
 class TareaController:
     def __init__(self):
-        self.model = tareas()
+        self.model = TareasModel()
     
     def obtener_lista(self, id_usuario):
         return self.model.listar_por_usuario(id_usuario)
@@ -11,5 +11,5 @@ class TareaController:
         if not titulo:
             return False, "El título es obligatorio."
         
-        self.model.crear(id_usuario, titulo, desc, prio, clas)
+        self.model.crear_tarea(id_usuario, titulo, desc, prio, clas)
         return True, "Tarea guardada."

@@ -1,5 +1,5 @@
 from models.userModel import UsuarioModel
-from models.schemasModel import userSchema
+from models.schemasModely import UsuarioSchema
 from pydantic import ValidationError
 
 class AuthController:
@@ -8,7 +8,7 @@ class AuthController:
         
     def registrar_usuario(self, nombre, email, password):
         try:
-            nuevo_usuario = userSchema(nombre=nombre, email=email, password=password)
+            nuevo_usuario = UsuarioSchema(nombre=nombre, email=email, password=password)
             success = self.model.registrar(nuevo_usuario)
             return success ,"Usuario registrado exitosamente." 
         except ValidationError as e:
