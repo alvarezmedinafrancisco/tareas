@@ -1,11 +1,12 @@
 import flet as ft
+from controllers.tareacontroller import TareaController
 def DashboardView(page, tarea_controller):
     user= page.session.get("user")
     lista_tareas = ft.Column(scroll=ft.ScrollMode.ALWAYS, expand=True)
     
     def refresh():
         lista_tareas.controls.clear()
-        for t in tarea_controller.obtener_tareas(user["id"]):
+        for t in TareaController.obtener_lista(user["id"]):
             lista_tareas.controls.append(
                 ft.Card(
                     content=ft.Container(
