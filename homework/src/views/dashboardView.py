@@ -35,6 +35,6 @@ def DashboardView(page, tarea_controller):
             ft.Row([txt_titulo,ft.FloatingActionButton(icon=ft.Icons.ADD, on_click=add_task)]),
             ft.divider(),
             ft.Text("mis tareas pendientes", size=20, weight="bold"),
-            lista_tareass
+            lista_tareas
     ], expand=True, padding=20)
     ],on_open=lambda _: refresh())

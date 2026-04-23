@@ -1,4 +1,4 @@
-import bcrypt
+import bcrypt 
 from .databaseModel import Database
 
 class UsuarioModel:
