@@ -1,4 +1,4 @@
-from .databaseModel import Database
+from models.databaseModel import Database
 
 class TareasModel:
     def __init__(self):

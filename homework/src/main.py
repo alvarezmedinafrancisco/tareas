@@ -5,26 +5,60 @@ from views.loginView import LoginView
 from views.dashboardView import DashboardView
 
 def start(page: ft.Page):
-    auth_ctrl = AuthController()
-    task_ctrl = TareaController()
+    # Configuración básica de la página
+    page.title = "SIGE - Sistema de Gestión"
+    page.window_width = 450
+    page.window_height = 700
+    page.theme_mode = ft.ThemeMode.LIGHT
     
+    print("Iniciando aplicación...")
+
+    # Cargamos los controladores
+    try:
+        auth_ctrl = AuthController()
+        task_ctrl = TareaController()
+        print("Controladores cargados exitosamente.")
+    except Exception as ex:
+        print(f"Error al iniciar controladores: {ex}")
+
     def route_change(e):
+        print(f"Cambiando ruta a: {page.route}")
         page.views.clear()
-        if page.route == "/":
+        
+        # IMPORTANTE: LoginView debe retornar un ft.View
+        if page.route == "/" or page.route == "":
+            print("Cargando LoginView...")
             page.views.append(LoginView(page, auth_ctrl))
-        elif page.route == "/dashboard":
-            page.views.append(DashboardView(page, auth_ctrl, task_ctrl))
             
+        elif page.route == "/dashboard":
+            print("Cargando DashboardView...")
+            page.views.append(DashboardView(page, auth_ctrl, task_ctrl))
+        
+        # Seguridad por si la ruta no existe
         if not page.views:
             page.views.append(
-                ft.View("/", [ft.Text("error Ruta no encontrada")])
+                ft.View("/", [ft.Text("Error 404: Ruta no encontrada")])
             )
-        page.update()
         
+        page.update()
+
+    def view_pop(e):
+        if len(page.views) > 1:
+            page.views.pop()
+            top_view = page.views[-1]
+            page.go(top_view.route)
+
+    # Configuramos los eventos de la página
     page.on_route_change = route_change
-    page.go("/")
+    page.on_view_pop = view_pop
     
+    # AJUSTE FINAL: En lugar de page.go, llamamos directamente a la función
+    # para asegurar que la primera vista se cargue sin errores de tiempo.
+    route_change(None) 
+    page.update()
+
 def main():
+    print("Arrancando Flet Engine...")
     ft.app(target=start)
     
 if __name__ == "__main__":

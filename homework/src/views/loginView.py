@@ -1,4 +1,5 @@
 import flet as ft
+from controllers.usercontroller import AuthController
 
 def LoginView(page: ft.Page, auth_controller):
     # Campos de entrada
