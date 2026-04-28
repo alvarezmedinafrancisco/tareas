@@ -31,9 +31,9 @@ def DashboardView(page, tarea_controller):
             actions=[ft.IconButton(ft.Icons.EXIT_TO_APP, on_click=lambda e: page.go("/login"))
             ]
         ),
-        ft.column([
+        ft.Column([
             ft.Row([txt_titulo,ft.FloatingActionButton(icon=ft.Icons.ADD, on_click=add_task)]),
-            ft.divider(),
+            ft.Divider(),
             ft.Text("mis tareas pendientes", size=20, weight="bold"),
             lista_tareas
     ], expand=True, padding=20)

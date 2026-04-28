@@ -11,6 +11,10 @@ class UsuarioModel:
         cursor = conn.cursor()
             
         try:
+            #if usuario_encontrado
+            #hashear la contraseña usando bycrip para despues validarla aki
+            #return true
+            #validar errores de email ademas de variables que parece que no existen 
                 cursor.execute(
                     "INSERT INTO usuario (nombre, email, password) VALUES (%s, %s, %s)",
                     (usuario_data.nombre, usuario_data.email, hashed_pw.decode('utf-8'))
