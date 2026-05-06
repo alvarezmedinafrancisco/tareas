@@ -2,6 +2,7 @@ import flet as ft
 from controllers.usercontroller import AuthController
 from controllers.tareacontroller import TareaController
 from views.loginView import LoginView
+from views.registerView import RegisterView
 from views.dashboardView import DashboardView
 
 def start(page: ft.Page):
