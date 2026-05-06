@@ -2,8 +2,8 @@ import flet as ft
 from controllers.usercontroller import AuthController
 from controllers.tareacontroller import TareaController
 from views.loginView import LoginView
-from views.registerView import RegisterView
-from views.dashboardView import DashboardView
+from views.dashboardView import RegisterView
+from views.Tareaview import TareaView
 
 def start(page: ft.Page):
     # Configuración básica de la página
@@ -25,17 +25,20 @@ def start(page: ft.Page):
     def route_change(e):
         print(f"Cambiando ruta a: {page.route}")
         page.views.clear()
-        
-        # IMPORTANTE: LoginView debe retornar un ft.View
+        # rutas de la app: login, registro y dashboard
         if page.route == "/" or page.route == "":
             print("Cargando LoginView...")
             page.views.append(LoginView(page, auth_ctrl))
             
+        elif page.route == "/registro":
+            print("Cargando RegisterView...")
+            page.views.append(RegisterView(page, auth_ctrl))
+            
         elif page.route == "/dashboard":
-            print("Cargando DashboardView...")
-            page.views.append(DashboardView(page, auth_ctrl, task_ctrl))
+            print("Cargando TareaView...")
+            page.views.append(TareaView(page, task_ctrl))
         
-        # Seguridad por si la ruta no existe
+        # seguridad por si la ruta no existe
         if not page.views:
             page.views.append(
                 ft.View("/", [ft.Text("Error 404: Ruta no encontrada")])

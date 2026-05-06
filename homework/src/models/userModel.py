@@ -11,9 +11,10 @@ class UsuarioModel:
         conn = self.db.get_connection()
         cursor = conn.cursor()
         try:
+            # guardo apellido vacio porque la tabla lo pide en la db
             cursor.execute(
-                "INSERT INTO usuario (nombre, email, password) VALUES (%s, %s, %s)",
-                (data.nombre, data.email, hashed.decode('utf-8'))
+                "INSERT INTO usuario (nombre, apellido, email, password) VALUES (%s, %s, %s, %s)",
+                (data.nombre, "", data.email, hashed.decode('utf-8'))
             )
             conn.commit()
             return True
